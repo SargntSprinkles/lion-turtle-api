@@ -2,11 +2,13 @@ name: Build and Test
 
 on:
   push:
-    tags-ignore:
-      - no-build-test
+    branches:
+      - staging
+      - production
   pull_request:
-    tags-ignore:
-      - no-build-test
+    branches:
+      - staging
+      - production
 
 jobs:
 
