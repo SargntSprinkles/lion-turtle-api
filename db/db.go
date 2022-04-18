@@ -7,6 +7,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/golang-migrate/migrate/v4"
+	migratepg "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	gormpg "gorm.io/driver/postgres"
@@ -65,13 +68,12 @@ func (p *postgres) DB() *postgres {
 
 	conn, connErr := sql.Open("postgres", uri)
 	if connErr != nil {
-		logrus.Errorf("could not connect to db")
+		logrus.Error("could not connect to db")
 		panic(connErr)
 	}
 	pingErr := conn.Ping()
 	if pingErr != nil {
-		logrus.Errorf("could not ping db")
-		panic(pingErr)
+		logrus.Fatalf("could not ping db - %s", pingErr.Error())
 	}
 	conn.SetConnMaxLifetime(time.Minute * 5)
 	conn.SetMaxIdleConns(100)
@@ -79,13 +81,32 @@ func (p *postgres) DB() *postgres {
 
 	gormDB, gormErr := gorm.Open(gormpg.New(gormpg.Config{Conn: conn}), &gorm.Config{})
 	if gormErr != nil {
-		logrus.Errorf("could not convert db conn to gorm")
-		panic(gormErr)
+		logrus.Fatalf("could not convert db conn to gorm - %s", gormErr.Error())
 	}
 
 	p.connection = gormDB
 	p.connected = true
 	logrus.Info("connected to db")
+
+	logrus.Info("migrating up")
+	driver, driverErr := migratepg.WithInstance(conn, &migratepg.Config{})
+	if driverErr != nil {
+		logrus.Fatalf("could not create migration driver - %s", driverErr.Error())
+	}
+	m, mErr := migrate.NewWithDatabaseInstance("file://migrations", "postgres", driver)
+	if mErr != nil {
+		logrus.Fatalf("could not instantiate Migrate object - %s", mErr.Error())
+	}
+	if upErr := m.Up(); upErr != nil {
+		switch upErr {
+		case migrate.ErrNoChange:
+			logrus.Info("no change to schema")
+		default:
+			logrus.Fatalf("could not migrate up - %s", upErr.Error())
+		}
+	}
+	logrus.Info("finished migrating up")
+
 	return p
 }
 
