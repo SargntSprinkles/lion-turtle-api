@@ -29,3 +29,8 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+  # test-migrations:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
