@@ -19,10 +19,7 @@ func Serve() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", ping)
 	mux.HandleFunc("/gql", gql)
-
-	if config.Env() == "dev" || config.Env() == "staging" {
-		mux.Handle("/dev", playground.Handler("playground", "/gql"))
-	}
+	mux.Handle("/ui", playground.Handler("playground", "/gql"))
 
 	port := config.Port()
 	server = &http.Server{
