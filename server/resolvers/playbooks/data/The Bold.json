@@ -1,0 +1,43 @@
+{
+    "Name": "The Bold",
+    "Source": "Core",
+    "Principles": [
+        "Loyalty",
+        "Confidence"
+    ],
+    "StartingCreativity": 1,
+    "StartingFocus": 1,
+    "StartingHarmony": 0,
+    "StartingPassion": -1,
+    "DemeanorOptions": [
+        "Affable",
+        "Enthusiastic",
+        "Impatient",
+        "Impetuous",
+        "Sensitive",
+        "Talkative"
+    ],
+    "HistoryQuestions": [
+        "Why do you feel the need to prove yourself so badly?",
+        "Who epitomizes the kind of big, bold figure you hope to be?",
+        "Whose approval do you think you will never attain?",
+        "What token or symbol do you wear to prove you are serious?",
+        "Why are you committed to this group or purpose?"
+    ],
+    "FeatureName": "",
+    "FeatureDescription": "",
+    "Connections": [
+        "scoffs at me and my plans; one day I'll show them what I can do.",
+        "has a pretty good head on their shoulders; they're a great sounding board for my ideas."
+    ],
+    "MomentOfBalance": " The greatest heroes of your age may have overwhelming confidence, but balance isn't about pursuing greatness for the sake of greatness. You find a way to stand with your companions like no one else ever could. Tell the GM how you strike down an impossibly strong enemy or obstacle to pro- tect your friends from harm as the best version of yourself.",
+    "GrowthQuestion": "Did you express vulnerability by admitting you were wrong or that you should have listened to someone you ignored?",
+    "Moves": [
+        "Best Friend",
+        "Here's the Plan",
+        "Not Done Yet!",
+        "You Missed Something",
+        "Straight Shooter"
+    ],
+    "Technique": "Tag Team"
+}

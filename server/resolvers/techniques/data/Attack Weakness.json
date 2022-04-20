@@ -1,0 +1,10 @@
+{
+    "Name": "Attack Weakness",
+    "Approach": "Advance and Attack",
+    "Description": "Strike an enemy at a weak point where they've already been injured. Mark fatigue to target an engaged, Impaired enemy in reach; they suffer fatigue equal to however many conditions they already have marked.",
+    "Tags": [
+        "Core",
+        "Universal",
+        "Advance and Attack"
+    ]
+}
