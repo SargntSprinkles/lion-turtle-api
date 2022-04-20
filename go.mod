@@ -4,7 +4,9 @@ module github.com/SargntSprinkles/lion-turtle-api
 go 1.17
 
 require (
+	github.com/99designs/gqlgen v0.17.2
 	github.com/golang-migrate/migrate/v4 v4.15.1
+	github.com/graph-gophers/graphql-go v1.4.0
 	github.com/lib/pq v1.10.5
 	github.com/sirupsen/logrus v1.8.1
 	gorm.io/driver/postgres v1.3.4
@@ -26,6 +28,6 @@ require (
 	github.com/jinzhu/now v1.1.4 // indirect
 	go.uber.org/atomic v1.6.0 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
+	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )

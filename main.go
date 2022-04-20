@@ -1,18 +1,15 @@
 package main
 
 import (
-	"os"
-
+	"github.com/SargntSprinkles/lion-turtle-api/config"
 	"github.com/SargntSprinkles/lion-turtle-api/db"
-	"github.com/sirupsen/logrus"
+	"github.com/SargntSprinkles/lion-turtle-api/server"
 )
 
 func main() {
-	logrus.SetLevel(logrus.InfoLevel)
-	if environment := os.Getenv("LIONTURTLE_ENV"); environment == "dev" {
-		logrus.SetLevel(logrus.DebugLevel)
-	}
+	config.Initialize()
 
 	pgdb := db.PGDB()
 	defer pgdb.Disconnect()
+	server.Serve()
 }

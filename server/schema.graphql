@@ -1,0 +1,46 @@
+type Query {
+    playbooks: [Playbook!]!
+    playbook(name: String!): Playbook!
+
+    moves: [Move!]!
+    move(name: String!): Move!
+    movesWithAllTags(tags: [String!]!): [Move!]!
+    movesWithAnyTags(tags: [String!]!): [Move!]!
+
+    techniques: [Technique!]!
+    technique(name: String!): Technique!
+    techniquesWithAllTags(tags: [String!]!): [Technique!]!
+    techniquesWithAnyTags(tags: [String!]!): [Technique!]!
+}
+
+type Playbook {
+    name: String!
+    source: String!
+    principles: [String!]!
+    startingCreativity: Int!
+    startingFocus: Int!
+    startingHarmony: Int!
+    startingPassion: Int!
+    demeanorOptions: [String!]!
+    historyQuestions: [String!]!
+    featureName: String!
+    featureDescription: String!
+    connections: [String!]!
+    momentOfBalance: String!
+    growthQuestion: String!
+    moves: [String!]!
+    technique: String!
+}
+
+type Move {
+    name: String!
+    description: String!
+    tags: [String!]!
+}
+
+type Technique {
+    name: String!
+    approach: String!
+    description: String!
+    tags: [String!]!
+}
