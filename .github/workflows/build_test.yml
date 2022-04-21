@@ -31,6 +31,7 @@ jobs:
       postgres:
         image: postgres
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
@@ -40,7 +41,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Migrate Up 1
-      run: docker run -v $PWD/migrations:/migrations --network host migrate/migrate -path=/migrations/ -database postgres://localhost:5432/database up
+      run: docker run -v $PWD/migrations:/migrations --network host migrate/migrate -path=/migrations/ -database postgres://postgres:postgres@localhost:5432/postgres up
     # - name: Migrate Down 1
     #   run: 
     # - name: Migrate Up 2
