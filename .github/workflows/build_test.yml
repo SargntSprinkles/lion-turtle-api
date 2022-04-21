@@ -27,7 +27,10 @@ jobs:
 
   test-migrations:
     runs-on: ubuntu-latest
-    container: migrate/migrate
+    container:
+      image: migrate/migrate
+      volumes:
+        - /home/runner/work/lion-turtle-api/lion-turtle-api/migrations:/migrations
     services:
       postgres:
         image: postgres
