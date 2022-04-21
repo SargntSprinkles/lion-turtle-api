@@ -40,8 +40,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Migrate Up 1
-      run: docker run -v ./migrations:/migrations --network host migrate/migrate
-    -path=/migrations/ -database postgres://localhost:5432/database up
+      run: docker run -v ./migrations:/migrations --network host migrate/migrate -path=/migrations/ -database postgres://localhost:5432/database up
     # - name: Migrate Down 1
     #   run: 
     # - name: Migrate Up 2
