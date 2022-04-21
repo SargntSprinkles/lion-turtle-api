@@ -17,6 +17,7 @@ var server *http.Server
 
 func Serve() {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", index)
 	mux.HandleFunc("/ping", ping)
 	mux.HandleFunc("/gql", gql)
 	mux.Handle("/ui", playground.Handler("playground", "/gql"))
@@ -28,6 +29,16 @@ func Serve() {
 	}
 	logrus.Infof("listening on %s", port)
 	logrus.Fatal(server.ListenAndServe())
+}
+
+func index(writer http.ResponseWriter, request *http.Request) {
+	switch request.Method {
+	case "GET":
+		writer.WriteHeader(http.StatusOK)
+		fmt.Fprint(writer, "Hello! You have found the Lion Turtle API for the Avatar Legends RPG. Please use /gql to make requests or /ui for API docs and testing. Thanks! -SargntSprinkles")
+	default:
+		http.NotFound(writer, request)
+	}
 }
 
 func ping(writer http.ResponseWriter, request *http.Request) {
